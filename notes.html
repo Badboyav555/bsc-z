@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Mode | BSc Notes</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/notes.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <!-- Sticky Navbar -->
+    <nav class="navbar glass">
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+            <i class="ri-arrow-left-line"></i>
+            <span>Back to Dashboard</span>
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <button id="lang-toggle" class="btn btn-outline" style="font-size: 0.8rem; padding: 6px 12px;">EN</button>
+            <button id="unlock-btn" class="btn btn-primary" style="display:none; font-size: 0.8rem; padding: 6px 12px;">
+                <i class="ri-lock-unlock-line"></i> Unlock
+            </button>
+        </div>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="reading-progress"></div>
+    </div>
+
+    <main class="container notes-layout">
+        
+        <!-- Sidebar / TOC (Desktop) -->
+        <aside class="sidebar glass" id="toc-sidebar">
+            <h4 style="margin-bottom: 16px; color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">On this page</h4>
+            <ul id="toc-list">
+                <!-- Dynamic Headings -->
+            </ul>
+        </aside>
+
+        <!-- Content Area -->
+        <article class="content-area">
+            <!-- Loader -->
+            <div id="loader" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 300px; gap: 16px;">
+                <div class="spinner"></div>
+                <p style="color: var(--text-muted);">Loading notes...</p>
+            </div>
+
+            <!-- Markdown Content -->
+            <div id="markdown-content" class="markdown-body glass" style="display: none;">
+                <!-- Content Injected Here -->
+            </div>
+
+            <!-- Error State -->
+            <div id="error-state" class="glass" style="display: none; text-align: center; padding: 40px;">
+                <i class="ri-error-warning-line" style="font-size: 3rem; color: #ef4444; margin-bottom: 16px;"></i>
+                <h3>Notes Not Found</h3>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">We couldn't load the requested file.</p>
+                <button onclick="window.location.reload()" class="btn btn-outline">Retry</button>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Lock Overlay (30% Blur) -->
+    <div id="lock-overlay" class="lock-overlay">
+        <div class="glass lock-card">
+            <div style="background: var(--primary-soft); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                <i class="ri-lock-2-line" style="font-size: 1.8rem; color: var(--primary);"></i>
+            </div>
+            <h2>Premium Content</h2>
+            <p style="color: var(--text-muted); margin: 10px 0 24px;">This note is locked. Enter your details to unlock full access instantly.</p>
+            
+            <form id="unlock-form">
+                <div class="input-group">
+                    <input type="text" id="lead-name" class="form-control" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="tel" id="lead-mobile" class="form-control" placeholder="Mobile Number" pattern="[0-9]{10}" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Unlock Full Notes</button>
+            </form>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 16px;">No OTP required. Instant access.</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/notes.js"></script>
+</body>
+</html>
